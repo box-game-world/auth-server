@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hi from '../components/hi.vue'
+import Login from '../components/login.vue'
 
 Vue.use(Router)
  
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hi',
-      component: Hi
+      name: 'Login',
+      component: Login
     }
   ]
 })
