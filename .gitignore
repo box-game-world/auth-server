@@ -6,6 +6,14 @@ yarn-debug.log*
 yarn-error.log*
 /test/unit/coverage/
 
+src/**/*.d.ts
+src/**/*.js.map
+src/**/*.js
+
+server/**/*.d.ts
+server/**/*.js.map
+server/**/*.js
+
 # Editor directories and files
 .idea
 .vscode

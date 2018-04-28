@@ -8,12 +8,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: './src/index.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -23,7 +21,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.ts', '.js', '.json', '.vue'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -35,6 +33,14 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        exclude: [/node_modules/, './server'],
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        },
       },
       {
         test: /\.js$/,
