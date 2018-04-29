@@ -4,29 +4,30 @@
       <article class="login">
         <h2>로그인</h2>
         <div class="center-wrap">
-          <form name="loginForm" id="loginForm" action="/login" method="POST" autocomplete="off" onsubmit="return app.submitLogin()">
-          <input type="hidden" name="_csrf" value="a9f93160-efaa-40e3-a38e-691050211ac6"> 
+          
+          <!-- <input type="hidden" name="_csrf" value="a9f93160-efaa-40e3-a38e-691050211ac6">  -->
           <div class="input-wrap">
             <span>
-              <input type="text" placeholder="아이디(메일)를 입력해 주세요." name="username" id="username" maxlength="100" title="아이디(이메일) 입력" tabindex="1"> 
+              <input type="text" placeholder="이메일을 입력해 주세요." v-model="userEmail" maxlength="100" title="이메일 입력" tabindex="1"> 
               <div class="error-msg">
-                <span>잘못된 아이디 또는 비밀번호를 입력하셨습니다.</span>
+                <span>잘못된 이메일 입력하셨습니다.</span>
               </div>
             </span>
           </div> 
           <div class="input-wrap">
-            <input type="password" placeholder="비밀번호를 입력해 주세요." id="password" name="password" title="비밀번호 입력" tabindex="2"> 
+            <input type="password" placeholder="비밀번호를 입력해 주세요." v-model="userPassword" title="비밀번호 입력" tabindex="2"> 
             <div class="error-msg">
               <span>비밀번호를 입력해 주세요.</span>
             </div>
           </div> 
-          <label check="">
+          
+          <!-- <label check="">
             <input type="checkbox" title="아이디 저장" tabindex="4">아이디 저장
-          </label> 
-          <button class="btn-primary btn-login">로그인</button>
-            
-          </form>
-            <div class="menu">
+          </label>  -->
+
+          <button class="btn-primary btn-login" @click="login">로그인</button>
+
+            <!-- <div class="menu">
               <ul>
                 <li>
                   <a href="https://www.ncloud.com/join/type">회원가입</a>
@@ -40,7 +41,7 @@
               </ul>
               <hr class="mv-20">
             </div>
-            <a href="#" onclick="return app.loginByNaver()" class="btn btn-success btn-naver">네이버 아이디로 로그인</a>
+            <a href="#" onclick="return app.loginByNaver()" class="btn btn-success btn-naver">네이버 아이디로 로그인</a> -->
           </div>
         </article>
       </div>
@@ -50,10 +51,39 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import axios from 'axios';
 
 @Component
-export default class Login extends Vue {}
+export default class Login extends Vue {
+
+  public userEmail:string='';
+  public userPassword:string='';
+
+  public login():void{
+    
+    if( !this.userEmail || !this.userEmail.trim() ){
+      alert( '이메일을 입력해주세요.');
+      return;
+    }
+
+    if( !this.userPassword || !this.userPassword.trim() ){
+      alert( '비밀번호를 입력해주세요.');
+      return; 
+    }
+  
+    axios.post( 'http://localhost:7000/login', { user_email:this.userEmail, user_password:this.userPassword } )
+      .then( (data:any )=>{
+        console.log( data );
+      })
+      .catch( ( error:any )=>{
+        console.log( error );
+      })
+  }
+
+}
 </script>
+
+
 
 <style lang="scss">
 

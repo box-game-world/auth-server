@@ -5,14 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __importDefault(require("vue"));
 var vue_router_1 = __importDefault(require("vue-router"));
-var hi_vue_1 = __importDefault(require("../components/hi.vue"));
+var login_vue_1 = __importDefault(require("../components/login.vue"));
 vue_1.default.use(vue_router_1.default);
 exports.default = new vue_router_1.default({
     routes: [
         {
             path: '/',
-            name: 'Hi',
-            component: hi_vue_1.default
+            name: 'Login',
+            component: login_vue_1.default
         }
     ]
 });

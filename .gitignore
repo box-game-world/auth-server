@@ -13,6 +13,7 @@ src/**/*.js
 server/**/*.d.ts
 server/**/*.js.map
 server/**/*.js
+server/public/
 
 # Editor directories and files
 .idea

@@ -7,9 +7,11 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
+    "start:server": "nodemon ./server/bin/www.js",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:server": "tsc --project tsconfig-server.json"
   },
   "dependencies": {
     "@types/bootstrap": "^4.1.0",
