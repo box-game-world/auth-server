@@ -8,7 +8,6 @@ const app:express.Application = App.getInstance().app;
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: true})); 
-app.listen( 7000 , ()=>console.log( '포트:7000 연결 성공' ) );
-
 RouteFacade.init( app ); 
+app.listen( 7000 , ()=>console.log( '포트:7000 연결 성공' ) );
 
