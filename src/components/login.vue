@@ -4,28 +4,29 @@
       <article class="login">
         <h2>로그인</h2>
         <div class="center-wrap">
-          
-          <!-- <input type="hidden" name="_csrf" value="a9f93160-efaa-40e3-a38e-691050211ac6">  -->
-          <div class="input-wrap">
-            <span>
-              <input type="text" placeholder="이메일을 입력해 주세요." v-model="userEmail" maxlength="100" title="이메일 입력" tabindex="1"> 
+          <form id="login-form" action="http://localhost:7000/login" method="post" @submit="formValidation">
+            <div class="input-wrap">
+              <span>
+                <input type="text" placeholder="이메일을 입력해 주세요." v-model="userEmail" name="user_email" maxlength="100" title="이메일 입력" tabindex="1"> 
+                <div class="error-msg">
+                  <span>잘못된 이메일 입력하셨습니다.</span>
+                </div>
+              </span>
+            </div> 
+            <div class="input-wrap">
+              <input type="password" placeholder="비밀번호를 입력해 주세요." v-model="userPassword" name="user_password" title="비밀번호 입력" tabindex="2"> 
               <div class="error-msg">
-                <span>잘못된 이메일 입력하셨습니다.</span>
+                <span>비밀번호를 입력해 주세요.</span>
               </div>
-            </span>
-          </div> 
-          <div class="input-wrap">
-            <input type="password" placeholder="비밀번호를 입력해 주세요." v-model="userPassword" title="비밀번호 입력" tabindex="2"> 
-            <div class="error-msg">
-              <span>비밀번호를 입력해 주세요.</span>
-            </div>
-          </div> 
+            </div> 
+          </form>
+          
           
           <!-- <label check="">
             <input type="checkbox" title="아이디 저장" tabindex="4">아이디 저장
           </label>  -->
 
-          <button class="btn-primary btn-login" @click="login">로그인</button>
+          <button type="submit" form="login-form" class="btn-primary btn-login">로그인</button>
 
             <!-- <div class="menu">
               <ul>
@@ -54,32 +55,24 @@ import Component from "vue-class-component";
 import axios from 'axios';
 
 @Component
-export default class Login extends Vue {
+export default class Login extends Vue { 
 
   public userEmail:string='';
-  public userPassword:string='';
+  public userPassword:string=''; 
 
-  public login():void{
-    
+  public formValidation( event:Event ):void{
     if( !this.userEmail || !this.userEmail.trim() ){
       alert( '이메일을 입력해주세요.');
+      event.preventDefault();
       return;
     }
 
     if( !this.userPassword || !this.userPassword.trim() ){
       alert( '비밀번호를 입력해주세요.');
-      return; 
+      event.preventDefault();
+      return;
     }
-  
-    axios.post( 'http://localhost:7000/login', { user_email:this.userEmail, user_password:this.userPassword } )
-      .then( (data:any )=>{
-        console.log( data );
-      })
-      .catch( ( error:any )=>{
-        console.log( error );
-      })
   }
-
 }
 </script>
 

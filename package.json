@@ -11,14 +11,19 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "build": "node build/build.js",
-    "build:server": "tsc --project tsconfig-server.json"
+    "build:server": "tsc --project tsconfig-server.json --w"
   },
   "dependencies": {
     "@types/bootstrap": "^4.1.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express-session": "^1.15.8",
     "@types/node": "^10.0.0",
     "@types/npm": "^2.0.29",
     "bootstrap": "^4.1.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.2.1",
     "vue": "^2.5.2",
     "vue-class-component": "^6.2.0",
     "vue-router": "^3.0.1"
