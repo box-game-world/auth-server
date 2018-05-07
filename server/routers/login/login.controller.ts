@@ -20,7 +20,8 @@ export default {
     }
     
     const result:any = await axios.get( 'http://localhost:7001/auth/validation-token', { params:{ token:req.cookies[ 'bgw-access-token']} } );
-    if( result ){
+    
+    if( result.data.valid ){
       res.redirect( req.cookies.bgw_return_url );
     }else{
       res.sendFile( path.join( __dirname, '../../public/index.html') );
